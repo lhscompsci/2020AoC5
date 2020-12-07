@@ -10,17 +10,29 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner inf = new Scanner(new File(("input.dat")));
 
-        long ans = 1L;
+        int largest = -1;
 
-        ArrayList<String> map = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
 
         while(inf.hasNext()){
-            map.add(inf.nextLine());
+            list.add(inf.nextLine());
         }
 
+        for(String item: list){
+            int val = getSeatID(list);
+            if(val>largest){
+                largest = val;
+            }
+        }
         
         
-        
-        System.out.println(ans);
+        System.out.println(largest);
+    }
+
+    public static int getSeatID(String pass){
+        int seatID;
+
+
+        return seatID;
     }
 }
