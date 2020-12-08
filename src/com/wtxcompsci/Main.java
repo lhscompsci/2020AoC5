@@ -12,7 +12,7 @@ import static java.util.Arrays.asList;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner inf = new Scanner(new File(("inputbasic.dat")));
+        Scanner inf = new Scanner(new File(("input.dat")));
 
         int largest = -1;
 
@@ -38,11 +38,11 @@ public class Main {
     public static int getSeatID(String pass){
         int seatID=8;
 
-        boolean[] rows = new boolean[128];
-        boolean[] seats = new boolean[8];
-
-        Arrays.fill(rows,true);
-        Arrays.fill(seats,true);
+//        boolean[] rows = new boolean[128];
+//        boolean[] seats = new boolean[8];
+//
+//        Arrays.fill(rows,true);
+//        Arrays.fill(seats,true);
 
         System.out.println(pass);
 
@@ -51,36 +51,41 @@ public class Main {
         for(int i = 0; i<7; i++){
             System.out.println(i+": "+steps[i]);
             if(steps[i].equals("F")){
-                end = (start + end) / 2 + 1;
+                end = (start + end) / 2 - 1;
             }
             if(steps[i].equals("B")){
-                start = end/2;
+                start = (start + end)/2;
             }
-            flipList(rows,start,end);
+//           flipList(rows,start,end);
+            System.out.println(start+" "+ end);
 
         }
+        int row = end;
         start = 0;
         end = 7;
-        System.out.println(Arrays.toString(seats));
+//        System.out.println(Arrays.toString(seats));
         for(int i= 7; i<10; i++){
             System.out.println(i+": "+steps[i]);
             if(steps[i].equals("R")){
-                end = (start + end+1) / 2 ;
+                end = (start + end) / 2 -1;
             }
             if(steps[i].equals("L")){
-                start = end/2+1;
+                start = (start + end)/2+1;
             }
-            flipList(seats,start,end);
-            System.out.println(Arrays.toString(seats));
+//            flipList(seats,start,end);
+//            System.out.println(Arrays.toString(seats));
+            System.out.println(start+" "+ end);
         }
 
-        seatID = seatID * asList(rows).indexOf(true) + asList(seats).indexOf(true);
+        int col = end;
+        seatID = seatID * row + col;
 
         return seatID ;
     }
 
-    public static void flipList(boolean[] l, int s, int f){
-        for(int i=s; i<f; i++)
-            l[i]=false;
-    }
+//    public static void flipList(boolean[] l, int s, int f){
+//
+//        for(int i=s; i<f; i++)
+//            l[i]=false;
+//    }
 }
